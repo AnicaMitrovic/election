@@ -24,6 +24,12 @@ contract Election {
 //Store candidates count
     uint public candidatesCount;
 
+
+// voted event
+    event votedEvent (uint indexed _candidateId);
+
+
+
     constructor() public {
         //dodavanje svih kandidata koji ce biti na izboru
         addCandidate("Candidate 1");
@@ -48,5 +54,8 @@ contract Election {
 
         //update candidate vote count
         candidates[_candidateId].voteCount++;
+
+        //trigger event any time vote is cast
+        emit votedEvent(_candidateId);
     }
 }
